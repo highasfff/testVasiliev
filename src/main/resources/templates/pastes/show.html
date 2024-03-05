@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pastes</title>
+</head>
+<body>
+<h2>Пасты</h2>
+<table>
+    <tr>
+        <th>Хэш пасты</th>
+        <th>Текст пасты</th>
+        <th>Автор пасты</th>
+    </tr>
+    <tr th:each="paste : ${pastes}">
+        <div th:if="${!paste.isExpired()} and ${paste.getModificator().toString().equals('PUBLIC')}">
+            <td th:text="${paste.getHash()}"></td>
+            <td th:text="${paste.getText()}"></td>
+            <td th:text="${paste.getAuthorName()}"></td>
+        </div>
+    </tr>
+</table>
+<hr/>
+<a th:href="@{/pastes/new}">Добавить новую пасту</a>
+</body>
+</html>

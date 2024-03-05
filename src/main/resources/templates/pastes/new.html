@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать новую пасту</title>
+</head>
+<body>
+<h1>Форма для новой пасты</h1>
+<br>
+<form action="#" th:action="@{/pastes}" th:object="${paste}" method="post">
+    <label for="text">Введите текст пасты:</label>
+    <input type="text" th:field="*{text}" id="text" placeholder="Title">
+    <br/>
+    <label for="modificator">Выберите модификатор доступа:</label>
+    <select name="modificator" id="modificator" th:field="*{modificator}">
+        <option th:each="modificator : ${T(com.example.testvasiliev.model.Modificator).values()}"
+                th:value="${modificator}" th:text="${modificator}"></option>
+    </select>
+    <br/>
+    <label for="expirationTime">Выберите срок доступа:</label>
+    <input type="datetime-local" th:field="*{expirationTime}" id="expirationTime">
+    <br/>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Паста</title>
+</head>
+<body>
+<div th:if="${paste.isExpired()}">
+    <h2>Не найдено</h2>
+</div>
+<div th:if="${!paste.isExpired()}">
+    <p th:text="${paste.getText()}"></p>
+    <p th:text="'Автор: ' + ${paste.getAuthorName()}"></p>
+</div>
+</body>
+</html>

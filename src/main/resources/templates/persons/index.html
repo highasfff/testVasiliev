@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+</head>
+<body>
+<h2>Данные пользователя</h2>
+<p th:text="${person.getFullname()}"></p>
+<br/>
+<h2>Пасты</h2>
+<table>
+    <tr>
+        <th>Хэш пасты</th>
+        <th>Текст пасты</th>
+        <th>Модификатор пасты</th>
+        <th>Время истечения пасты</th>
+    </tr>
+    <tr th:each="paste : ${pastes}">
+        <div th:if="${!paste.isExpired()}">
+        <td th:text="${paste.getHash()}"></td>
+        <td th:text="${paste.getText()}"></td>
+        <td th:text="${paste.getModificator()}"></td>
+        <td th:text="${paste.getExpirationTime()}"></td>
+        <td><a th:href="@{/pastes/{hash}/edit(hash=${paste.getHash()})}">Отредактировать пасту</a></td>
+        </div>
+    </tr>
+</table>
+</body>
+</html>
